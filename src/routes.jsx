@@ -11,7 +11,7 @@ function AppRoutes() {
     <Routes>
       <Route path={HOME_ROUTE} element={<Home />} />
       <Route path={ABOUT_ROUTE} element={<About />} />
-      <Route path={USER_DETAILS_ROUTE} element={<UserDetails />} />
+      <Route path={`${USER_DETAILS_ROUTE}/:id`} element={<UserDetails />} />
 
       <Route path='*' element={<NotFound />} />
     </Routes>
