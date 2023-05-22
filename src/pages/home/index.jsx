@@ -1,13 +1,17 @@
 /* eslint-disable no-shadow */
 import React, { useEffect } from 'react';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import PostsList from '../../components/posts-list';
 import { requestPosts } from '../../redux/actions/creators/posts';
 
-function Home({ requestPosts, posts }) {
+function Home() {
+  const posts = useSelector((state) => state.posts);
+
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    requestPosts();
-  }, [requestPosts]);
+    dispatch(requestPosts());
+  }, []);
 
   return (
     <div>
@@ -17,6 +21,4 @@ function Home({ requestPosts, posts }) {
   );
 }
 
-export default connect(({ posts }) => ({ posts }), {
-  requestPosts,
-})(Home);
+export default Home;
