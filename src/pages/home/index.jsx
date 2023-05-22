@@ -5,7 +5,7 @@ import PostsList from '../../components/posts-list';
 import { requestPosts } from '../../redux/actions/creators/posts';
 
 function Home() {
-  const posts = useSelector((state) => state.posts);
+  const { data, loading, error } = useSelector((state) => state.posts);
 
   const dispatch = useDispatch();
 
@@ -16,7 +16,7 @@ function Home() {
   return (
     <div>
       <h1>Список постов</h1>
-      <PostsList posts={posts.data} isLoading={posts.loading} />
+      <PostsList posts={data} isLoading={loading} error={error} />
     </div>
   );
 }
