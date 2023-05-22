@@ -1,8 +1,14 @@
 import React from 'react';
+import { Container } from 'react-bootstrap';
+
 import AppRoutes from './routes';
 
 function App() {
-  return <AppRoutes />;
+  return (
+    <Container>
+      <AppRoutes />
+    </Container>
+  );
 }
 
 export default App;
