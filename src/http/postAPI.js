@@ -6,3 +6,11 @@ export const getPosts = async () => {
 
   return data;
 };
+
+export const getPostComments = async (postId) => {
+  const { data } = await $host.get('/comments', {
+    params: { postId },
+  });
+
+  return data;
+};
