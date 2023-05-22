@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Col } from 'react-bootstrap';
-import { useDispatch } from 'react-redux';
-import PostComments from './post-comments';
+import { useDispatch, useSelector } from 'react-redux';
+import PostCommentsList from './post-comments-list';
 import UserPlugIcon from '../../assets/static/user-plug.png';
-import { USER_DETAILS_ROUTE } from '../../utils/consts';
-import { requestComments } from '../../redux/actions/creators/posts';
+import { USER_ROUTE } from '../../utils/consts';
+import { requestComments } from '../../redux/actions/creators/comments';
 
 function Post({ id, title, body, userId }) {
   const [isViewComments, setIsViewComments] = useState(false);
+
+  const { data, loading, error } = useSelector((state) => state.comments);
 
   const dispatch = useDispatch();
 
@@ -20,18 +22,22 @@ function Post({ id, title, body, userId }) {
 
   return (
     <Col>
-      <Link to={`${USER_DETAILS_ROUTE}/${userId}`}>
+      <Link to={`${USER_ROUTE}/${userId}`}>
         <img src={UserPlugIcon} alt='аватар' width={50} height={50} />
       </Link>
 
       <h3>{title}</h3>
       <p>{body}</p>
 
-      <button type='button' onClick={onClickHandler}>
-        Комментарии
-      </button>
+      {!loading && (
+        <button type='button' onClick={onClickHandler}>
+          {isViewComments ? 'Скрыть комментарии' : 'Комментарии'}
+        </button>
+      )}
 
-      {isViewComments && <PostComments postId={id} />}
+      {isViewComments && (
+        <PostCommentsList comments={data} isLoading={loading} error={error} />
+      )}
     </Col>
   );
 }
