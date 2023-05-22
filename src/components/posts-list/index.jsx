@@ -2,12 +2,18 @@ import React from 'react';
 import { Row } from 'react-bootstrap';
 import Post from '../post';
 
-function PostsList() {
+function PostsList({ posts, isLoading }) {
+  const isEmpty = !isLoading && !posts?.length;
+
+  if (isLoading) return <span>Загрузка...</span>;
+
   return (
     <Row xs={1}>
-      {Array.from({ length: 5 }, (_v, k) => (
-        <Post key={k} />
-      ))}
+      {isEmpty ? (
+        <>Список пуст</>
+      ) : (
+        posts.map((post) => <Post key={post.id} {...post} />)
+      )}
     </Row>
   );
 }
