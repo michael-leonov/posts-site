@@ -9,9 +9,9 @@ export const requestComments = (postId) => ({
   payload: { postId },
 });
 
-export const receiveCommentsSuccess = (data) => ({
+export const receiveCommentsSuccess = (data, postId) => ({
   type: RECEIVE_COMMENTS_SUCCESS,
-  payload: { data },
+  payload: { data, postId },
 });
 
 export const receiveCommentsFailure = (error) => ({

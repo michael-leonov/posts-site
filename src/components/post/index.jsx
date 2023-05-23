@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Col } from 'react-bootstrap';
+import { Button, Col } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import PostCommentsList from './post-comments-list';
 import UserPlugIcon from '../../assets/static/user-plug.png';
 import { USER_ROUTE } from '../../utils/consts';
 import { requestComments } from '../../redux/actions/creators/comments';
+import LoadingSpinner from '../loading-spinner';
 
 function Post({ id, title, body, userId }) {
   const [isViewComments, setIsViewComments] = useState(false);
@@ -17,7 +18,7 @@ function Post({ id, title, body, userId }) {
   const onClickHandler = () => {
     setIsViewComments(!isViewComments);
 
-    dispatch(requestComments(id));
+    if (!isViewComments) dispatch(requestComments(id));
   };
 
   return (
@@ -29,15 +30,31 @@ function Post({ id, title, body, userId }) {
       <h3>{title}</h3>
       <p>{body}</p>
 
-      {!loading && (
-        <button type='button' onClick={onClickHandler}>
-          {isViewComments ? 'Скрыть комментарии' : 'Комментарии'}
-        </button>
-      )}
-
-      {isViewComments && (
-        <PostCommentsList comments={data} isLoading={loading} error={error} />
-      )}
+      <div className='d-flex flex-column'>
+        <Button
+          variant='primary'
+          onClick={onClickHandler}
+          style={{ maxWidth: '320px' }}
+        >
+          {loading ? (
+            <>
+              Загружаю...
+              <LoadingSpinner as='span' animation='grow' size='sm' />
+            </>
+          ) : isViewComments ? (
+            'Скрыть комментарии'
+          ) : (
+            'Комментарии'
+          )}
+        </Button>
+        {isViewComments && (
+          <PostCommentsList
+            comments={data[id]}
+            isLoading={loading}
+            error={error}
+          />
+        )}
+      </div>
     </Col>
   );
 }

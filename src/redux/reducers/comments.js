@@ -6,7 +6,7 @@ import {
 } from '../actions/types/comments';
 
 const initialState = {
-  data: [],
+  data: {},
   error: null,
   loading: false,
 };
@@ -19,7 +19,7 @@ export default function commentsReducer(state = initialState, action) {
     case RECEIVE_COMMENTS_SUCCESS:
       return {
         ...state,
-        data: action.payload.data,
+        data: { ...state.data, [action.payload.postId]: action.payload.data },
         error: null,
         loading: false,
       };
@@ -27,7 +27,7 @@ export default function commentsReducer(state = initialState, action) {
     case RECEIVE_COMMENTS_FAILURE:
       return {
         ...state,
-        data: [],
+        data: {},
         error: action.payload.error,
         loading: false,
       };

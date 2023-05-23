@@ -10,7 +10,7 @@ function* onRequestComments(action) {
   try {
     const data = yield call(getPostComments, action.payload.postId);
     yield delay(500);
-    yield put(receiveCommentsSuccess(data));
+    yield put(receiveCommentsSuccess(data, action.payload.postId));
   } catch (e) {
     yield put(receiveCommentsFailure(e));
   }
