@@ -1,8 +1,9 @@
+/* eslint-disable consistent-return */
 import React from 'react';
 import PostComment from '../post-comment';
 
 function PostCommentsList({ comments, isLoading, error }) {
-  if (isLoading) return <span>Загрузка...</span>;
+  if (isLoading) return;
 
   if (error) return <span>{error.message}...</span>;
 

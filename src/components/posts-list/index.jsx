@@ -1,11 +1,12 @@
 import React from 'react';
 import { Row } from 'react-bootstrap';
 import Post from '../post';
+import LoadingSpinner from '../loading-spinner';
 
 function PostsList({ posts, isLoading, error }) {
   const isEmpty = !isLoading && !posts?.length;
 
-  if (isLoading) return <span>Загрузка...</span>;
+  if (isLoading) return <LoadingSpinner animation='border' />;
 
   if (error) return <span>{error.message}...</span>;
 
