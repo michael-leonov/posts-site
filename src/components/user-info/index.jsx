@@ -1,4 +1,5 @@
 import React from 'react';
+import LoadingSpinner from '../loading-spinner';
 
 function UserInfo({
   name,
@@ -6,7 +7,13 @@ function UserInfo({
   email,
   address: { street, suite, city, zipcode, geo },
   phone,
+  isLoading,
+  error,
 }) {
+  if (isLoading) return <LoadingSpinner animation='border' />;
+
+  if (error) return <span>{error.message}...</span>;
+
   return (
     <div>
       <p>{name}</p>

@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Button } from 'react-bootstrap';
 import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -19,7 +18,7 @@ function User() {
   }, []);
 
   return (
-    <div>
+    <div className='d-flex flex-column'>
       <Link to={HOME_ROUTE} className='text-decoration-none'>
         Назад
       </Link>

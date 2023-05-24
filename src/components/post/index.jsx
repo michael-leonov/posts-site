@@ -1,12 +1,11 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Col } from 'react-bootstrap';
+import { Button, Col, Spinner } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import PostCommentsList from './post-comments-list';
 import UserPlugIcon from '../../assets/static/user-plug.png';
 import { USER_ROUTE } from '../../utils/consts';
 import { requestComments } from '../../redux/actions/creators/comments';
-import LoadingSpinner from '../loading-spinner';
 
 function Post({ id, title, body, userId }) {
   const [isViewComments, setIsViewComments] = useState(false);
@@ -39,7 +38,7 @@ function Post({ id, title, body, userId }) {
           {loading ? (
             <>
               Загружаю...
-              <LoadingSpinner as='span' animation='grow' size='sm' />
+              <Spinner animation='border' size='sm' />
             </>
           ) : isViewComments ? (
             'Скрыть комментарии'
