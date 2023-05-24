@@ -3,7 +3,7 @@ import LoadingSpinner from '../loading-spinner';
 
 function UserInfo({
   name,
-  userName,
+  username,
   email,
   address: { street, suite, city, zipcode, geo },
   phone,
@@ -16,12 +16,27 @@ function UserInfo({
 
   return (
     <div>
-      <p>{name}</p>
-      <p>{userName}</p>
-      <p>{email}</p>
-      <p>{city}</p>
-      <p>{street}</p>
-      <p>{phone}</p>
+      <h1 className='mb-3'>Информация о пользователе</h1>
+      <div>
+        <p>
+          <b>Имя:</b> {name}
+        </p>
+        <p>
+          <b>Логин:</b> {username}
+        </p>
+        <p>
+          <b>Email:</b> {email}
+        </p>
+        <p>
+          <b>Город:</b> {city}
+        </p>
+        <p>
+          <b>Улица:</b> {street}
+        </p>
+        <p>
+          <b>Телефон:</b> {phone}
+        </p>
+      </div>
     </div>
   );
 }

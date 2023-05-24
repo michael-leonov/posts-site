@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Button, Col, Spinner } from 'react-bootstrap';
+import { Button, Col, Spinner, Stack } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import PostCommentsList from './post-comments-list';
 import UserPlugIcon from '../../assets/static/user-plug.png';
@@ -21,39 +21,43 @@ function Post({ id, title, body, userId }) {
   };
 
   return (
-    <Col>
-      <Link to={`${USER_ROUTE}/${userId}`}>
-        <img src={UserPlugIcon} alt='аватар' width={50} height={50} />
-      </Link>
+    <Col className='py-4'>
+      <Stack gap={2}>
+        <Link to={`${USER_ROUTE}/${userId}`}>
+          <img src={UserPlugIcon} alt='аватар' width={50} height={50} />
+        </Link>
 
-      <h3>{title}</h3>
-      <p>{body}</p>
+        <h3 className='fs-3'>{title}</h3>
+        <p className='fs-6 mb-3'>{body}</p>
 
-      <div className='d-flex flex-column'>
-        <Button
-          variant='primary'
-          onClick={onClickHandler}
-          style={{ maxWidth: '320px' }}
-        >
-          {loading ? (
-            <>
-              Загружаю...
-              <Spinner animation='border' size='sm' />
-            </>
-          ) : isViewComments ? (
-            'Скрыть комментарии'
-          ) : (
-            'Комментарии'
+        <Stack gap={2}>
+          <Button
+            variant='primary'
+            onClick={onClickHandler}
+            className={`${
+              isViewComments ? 'mb-2' : ''
+            } align-self-center align-self-md-baseline`}
+          >
+            {loading ? (
+              <>
+                Загружаю...
+                <Spinner animation='border' size='sm' />
+              </>
+            ) : isViewComments ? (
+              'Скрыть комментарии'
+            ) : (
+              'Комментарии'
+            )}
+          </Button>
+          {isViewComments && (
+            <PostCommentsList
+              comments={data[id]}
+              isLoading={loading}
+              error={error}
+            />
           )}
-        </Button>
-        {isViewComments && (
-          <PostCommentsList
-            comments={data[id]}
-            isLoading={loading}
-            error={error}
-          />
-        )}
-      </div>
+        </Stack>
+      </Stack>
     </Col>
   );
 }

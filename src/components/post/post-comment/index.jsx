@@ -1,11 +1,16 @@
 import React from 'react';
+import { Stack } from 'react-bootstrap';
 
 function PostComment({ email, body }) {
   return (
-    <div>
-      <p>{email}</p>
-      <p>{body}</p>
-    </div>
+    <Stack gap={1}>
+      <p>
+        <b>Email пользователя:</b> {email}
+      </p>
+      <p>
+        <b>Комментарий:</b> {body}
+      </p>
+    </Stack>
   );
 }
 
