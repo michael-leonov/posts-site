@@ -6,9 +6,9 @@ import {
 } from '../actions/creators/posts';
 import { getPosts } from '../../http/postAPI';
 
-function* onRequestPosts() {
+function* onRequestPosts(action) {
   try {
-    const data = yield call(getPosts);
+    const data = yield call(getPosts, action.payload.params);
     yield delay(500);
     yield put(receivePostsSuccess(data));
   } catch (e) {

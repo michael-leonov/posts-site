@@ -4,7 +4,10 @@ import {
   RECEIVE_POSTS_FAILURE,
 } from '../types/posts';
 
-export const requestPosts = () => ({ type: REQUEST_POSTS });
+export const requestPosts = (params) => ({
+  type: REQUEST_POSTS,
+  payload: { params },
+});
 
 export const receivePostsSuccess = (data) => ({
   type: RECEIVE_POSTS_SUCCESS,
