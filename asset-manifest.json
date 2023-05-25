@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/michael-leonov/posts-site/static/css/main.6f87daee.css",
+    "main.js": "/michael-leonov/posts-site/static/js/main.08a468d6.js",
+    "static/media/user-plug.png": "/michael-leonov/posts-site/static/media/user-plug.5b59bb6464bfbb5a0a05.png",
+    "index.html": "/michael-leonov/posts-site/index.html",
+    "main.6f87daee.css.map": "/michael-leonov/posts-site/static/css/main.6f87daee.css.map",
+    "main.08a468d6.js.map": "/michael-leonov/posts-site/static/js/main.08a468d6.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.6f87daee.css",
+    "static/js/main.08a468d6.js"
+  ]
+}
