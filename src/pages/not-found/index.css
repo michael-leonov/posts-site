@@ -1,0 +1,5 @@
+@media (min-width: 576px) {
+  .border-sm-right {
+    border-right: 1px solid #424242;
+  }
+}
