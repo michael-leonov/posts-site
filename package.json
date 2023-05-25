@@ -1,5 +1,6 @@
 {
   "name": "posts-site",
+  "homepage": "https://github.com/michael-leonov/posts-site",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
